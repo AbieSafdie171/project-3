@@ -102,22 +102,25 @@ def check():
         flask.session["matches"] = matches
         rslt = {"valid_word": True}
         success_value = {"success_count": CONFIG.SUCCESS_AT_COUNT}
-        return flask.jsonify(result=rslt, success=success_value)
+        return flask.jsonify(result=rslt, success=success_value, msg=None)
     elif text in matches:
         # They already found the word! :(
         rslt = {"valid_word": False}
         success_value = {"success_count": CONFIG.SUCCESS_AT_COUNT}
-        return flask.jsonify(result=rslt, success=success_value)
+        msg = "You already found this word"
+        return flask.jsonify(result=rslt, success=success_value, msg=msg)
     elif not matched:
         # The word is not in the list
         rslt = {"valid_word": False}
         success_value = {"success_count": CONFIG.SUCCESS_AT_COUNT}
-        return flask.jsonify(result=rslt, success=success_value)
+        msg = "The word is not in the list"
+        return flask.jsonify(result=rslt, success=success_value, msg=msg)
     elif not in_jumble:
         # Word is not in the jumble
         rslt = {"valid_word": False}
         success_value = {"success_count": CONFIG.SUCCESS_AT_COUNT}
-        return flask.jsonify(result=rslt, success=success_value)
+        msg = "The word is not in the jumble"
+        return flask.jsonify(result=rslt, success=success_value, msg=msg)
     else:
         app.logger.debug("This case shouldn't happen!")
         assert False  # Raises AssertionError

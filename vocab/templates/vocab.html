@@ -84,7 +84,7 @@
          <h2>You found </h2>
          <p id="results">
          </p>
-         <p class="message"></p>
+         <p id="message"></p>
 
          <script>
              $("#entry").submit(function(event){
@@ -112,6 +112,7 @@
                                $("#attempt").val("");  // clear text box
                             }
 
+                            $("#message").html(data.msg);
 
                             s_val = data.success.success_count;  // gets value of how many words to win
                               console.log("sval: " + s_val);     // debug statement in console
